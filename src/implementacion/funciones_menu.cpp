@@ -39,7 +39,8 @@ void mostrarMenu() {
     cout << "5. inicializar bufferPool\n";
     cout << "6. cargar pagina\n";
     cout << "7. mostrar estado buffer pool (tabla)\n";
-    cout << "8. Salir\n";
+    cout << "8. despinear (tabla)\n";
+    cout << "9. Salir\n";
     cout << "Seleccione una opción: ";
 }
 
@@ -212,30 +213,59 @@ void caracteristicasDisco(gestorAlmacenamiento& gestor, disco& disco1){
     cout << "capacidad ocupada del disco: " << infoDisco[5] - gestor.capacidadDisco() << endl;
 }
 
-void inicializarBufferPool(){
-    int cantFrames = 0;
-    cout<< "cantidad de frames: ";
-    cin>>cantFrames;
-    //bufferManager mg;
-    //mg.inicializarBufferPool(cantFrames);
+// ... (código existente)
+
+void inicializarBufferPool(bufferManager& bm) {
+    int cantFrames;
+    cout << "Ingrese cantidad de frames para el buffer pool: ";
+    cin >> cantFrames;
+    bm = bufferManager(cantFrames);
 }
 
-void cargarPagina(){
-    int _idBloque = 1;
-    char modoApertura = ' ';
-    string rutaBloque;
-    bloque b;
-    bufferManager BM;
-    rutaBloque = obtenerRutaPorId(RUTASB,  _idBloque);
-    cout << rutaBloque << endl;
-    b.inicializarBloque(_idBloque, rutaBloque);
-    //BM.agregarGestorBloques(_idBloque,b);
+void mostrarEstadoBufferPool(const bufferManager& bm) {
+    bm.mostrarEstadoBufferPool();
+}
 
-}   
-/*
-cout << "idBloque: ";
+void cargarPagina(bufferManager& bm) {
+    int idBloque;
+    char modo;
+    
+    cout << "Ingrese ID del bloque a cargar: ";
     cin >> idBloque;
-    cout << "modo de apertura: ";
-    cin >> 
+    
+    cout << "Modo de acceso (L para lectura, E para escritura): ";
+    cin >> modo;
+    modo = toupper(modo);
+    
+    if (modo != 'L' && modo != 'E') {
+        cout << "Modo no válido. Use L (lectura) o E (escritura)." << endl;
+        return;
+    }
+    
+    string rutaBloque;
+    try {
+        rutaBloque = obtenerRutaPorId(RUTASB, idBloque);
+    } catch (const exception& e) {
+        cerr << "Error: " << e.what() << endl;
+        return;
+    }
+    
+    bloque b;
+    b.inicializarBloque(idBloque, rutaBloque);
+    
+    string mode_str = (modo == 'L') ? "read" : "write";
+    bm.agregarBufferPool(idBloque, b, mode_str);
+    
+    // Mostrar contenido si es lectura
+    if (modo == 'L') {
+        cout << "\nContenido del bloque:" << endl;
+        b.mostrarBloque();
+    }
+}
 
-    mg.subirPagina(id)*/
+void unpinBlock(bufferManager& bm) {
+    int idBloque;
+    cout << "Ingrese ID del bloque a despinear: ";
+    cin >> idBloque;
+    bm.unpinBlock(idBloque);
+}
