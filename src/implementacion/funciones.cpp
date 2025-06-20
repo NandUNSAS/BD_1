@@ -37,9 +37,9 @@ string obtenerRutaPorId(const string& archivoRutas, int idBloque) {
 
     string linea;
     int lineaActual = 1;
-
     while (getline(archivo, linea)) {
         if (lineaActual == idBloque) {
+           
             archivo.close();
             return obtenerRuta(linea); // Extrae el campo después de #
         }

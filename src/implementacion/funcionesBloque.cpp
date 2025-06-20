@@ -7,7 +7,7 @@
 #include <sstream>
 #include <vector>
 
-#define ARCHIVO_ESQUEMA_HEAD "/home/asus/Documentos/BD_1/archivos_esquema/esquema_registro_bloques.txt"
+#define ARCHIVO_ESQUEMA_HEAD "archivos_esquema/esquema_registro_bloques.txt"
 
 using namespace std;
 

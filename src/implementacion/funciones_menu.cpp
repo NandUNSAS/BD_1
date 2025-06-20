@@ -15,17 +15,17 @@
 #include <fstream>
 using namespace std;
 
-const string ARCHIVO_CSVT = "/home/asus/Documentos/BD_1/archivos_csv/TitanicG.csv";
-const string ARCHIVO_CSVH = "/home/asus/Documentos/BD_1/archivos_csv/Housing.csv";
-const string ARCHIVO_DATOS_T = "/home/asus/Documentos/BD_1/archivos_esquema/datos_titanic.txt";
-const string ARCHIVO_DATOS_H = "/home/asus/Documentos/BD_1/archivos_esquema/datos_housing.txt";
-const string ARCHIVO_LONG_MAX = "/home/asus/Documentos/BD_1/archivos_esquema/longitudes_maximas.txt";
-const string ARCHIVO_ESQUEMAT = "/home/asus/Documentos/BD_1/archivos_esquema/esquema_titanic.txt";
-const string ARCHIVO_ESQUEMAH = "/home/asus/Documentos/BD_1/archivos_esquema/esquema_hosing.txt";
-const string RUTAS = "/home/asus/Documentos/BD_1/rutas_sectores/rutas.txt";
-const string RUTASB = "/home/asus/Documentos/BD_1/rutas_sectores/cilindroMedio.txt";
-const string ARCHIVO_INFO_DISCO = "/home/asus/Documentos/BD_1/archivo_info_Disco/info_disco.txt";
-const string ARCHIVO_B_X_SECTORES = "/home/asus/Documentos/BD_1/archivo_info_Disco/info_bloque.txt";
+const string ARCHIVO_CSVT = "archivos_csv/TitanicG.csv";
+const string ARCHIVO_CSVH = "archivos_csv/Housing.csv";
+const string ARCHIVO_DATOS_T = "archivos_esquema/datos_titanic.txt";
+const string ARCHIVO_DATOS_H = "archivos_esquema/datos_housing.txt";
+const string ARCHIVO_LONG_MAX = "archivos_esquema/longitudes_maximas.txt";
+const string ARCHIVO_ESQUEMAT = "archivos_esquema/esquema_titanic.txt";
+const string ARCHIVO_ESQUEMAH = "archivos_esquema/esquema_hosing.txt";
+const string RUTAS = "rutas_sectores/rutas.txt";
+const string RUTASB = "rutas_sectores/cilindroMedio.txt";
+const string ARCHIVO_INFO_DISCO = "archivo_info_Disco/info_disco.txt";
+const string ARCHIVO_B_X_SECTORES = "archivo_info_Disco/info_bloque.txt";
 
 void mostrarMenu() {
     cout << "\n----- MEGATROM 3000 -----\n";
@@ -225,9 +225,7 @@ void cargarPagina(){
     bloque b;
     rutaBloque = obtenerRutaPorId(RUTASB,  _idBloque);
     cout << rutaBloque << endl;
-    b.setRutaBloque(rutaBloque);
-    b.setIdBloque(_idBloque);
-    b.construirBloque();
+    b.inicializarBloque(_idBloque, rutaBloque);
     b.mostrarBloque();
 }   
 /*

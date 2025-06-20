@@ -182,15 +182,15 @@ void gestorAlmacenamiento::insertarRegistro(string registro, string rutaSector, 
     string ruta_sector_disponible = rutaSector;
     bool insercion_exitosa = actualizarCabecera(tamanoRegistro, rutaSector, discoDuro.getTamSector());
     if(!insercion_exitosa){
-        ruta_sector_disponible = bloqueDisponible("/home/asus/Documentos/BD_1/rutas_sectores/cilindroMedio.txt");
+        ruta_sector_disponible = bloqueDisponible("rutas_sectores/cilindroMedio.txt");
         insercion_exitosa = actualizarCabecera(tamanoRegistro, ruta_sector_disponible, discoDuro.getTamSector());
     
     }
     cd.insertar(registro, tamanoRegistro, ruta_sector_disponible);
     int capacidad = discoDuro.getCapacidadDisco() - tamanoRegistro;
     discoDuro.setCapacidadDisco(capacidad);
-    verificadorSectoresLlenos("/home/asus/Documentos/BD_1/rutas_sectores/cilindroMedio.txt");
-    verificadorBloquesLlenos("/home/asus/Documentos/BD_1/rutas_sectores/cilindroMedio.txt");
+    verificadorSectoresLlenos("rutas_sectores/cilindroMedio.txt");
+    verificadorBloquesLlenos("rutas_sectores/cilindroMedio.txt");
 }
 
 
@@ -198,7 +198,7 @@ void gestorAlmacenamiento::insertarRegistroB(string registro, string rutaSector,
     string ruta_sector_disponible = rutaSector;
     bool insercion_exitosa = actualizarCabeceraB(tamanoRegistro, rutaSector, discoDuro.getTamSector(), sectoresXbloque);
     if(!insercion_exitosa){
-        ruta_sector_disponible = bloqueDisponible("/home/asus/Documentos/BD_1/rutas_sectores/cilindroMedio.txt");
+        ruta_sector_disponible = bloqueDisponible("rutas_sectores/cilindroMedio.txt");
         insercion_exitosa = actualizarCabeceraB(tamanoRegistro, ruta_sector_disponible, discoDuro.getTamSector(), sectoresXbloque);
     
     }
@@ -207,7 +207,7 @@ void gestorAlmacenamiento::insertarRegistroB(string registro, string rutaSector,
 }
 
 void gestorAlmacenamiento::guardarEnArchivo(){
-    ofstream archivo("/home/asus/Documentos/BD_1/archivo_info_Disco/info_bloque.txt");
+    ofstream archivo("archivo_info_Disco/info_bloque.txt");
     if (archivo.is_open()){
         archivo << sectoresXbloque;
         archivo.close();

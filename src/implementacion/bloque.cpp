@@ -47,6 +47,7 @@ void bloque::construirBloque() {
     }
 
     string lineaRuta;
+    getline(archivoBloque,lineaRuta);
     while (getline(archivoBloque, lineaRuta)) {
         vector<string> campos = obtenerCampos(lineaRuta);
         if (campos.size() < 2) continue;
@@ -76,4 +77,10 @@ void bloque::mostrarBloque() const {
     cout << "ID: " << idBloque << endl;
     cout << "Ruta del bloque: " << rutaBloque << endl;
     cout << "Registros: " << contenido << endl;
+}
+
+void bloque::inicializarBloque(int id, string ruta){
+    idBloque = id;
+    rutaBloque = ruta;
+    construirBloque();
 }
