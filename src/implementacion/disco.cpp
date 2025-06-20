@@ -57,7 +57,7 @@ void disco::crearDisco(){
 /
 */
 void disco::crearDisco() {
-    string ruta = "DiscoLocal";
+    string ruta = "../../DiscoLocal";
 
     if (fs::create_directory(ruta)) {
         cout << "Carpeta creada exitosamente.\n";

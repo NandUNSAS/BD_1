@@ -10,22 +10,24 @@
 #include "../include/funciones_menu.h"
 #include "../include/funcionesBloque.h"
 #include "../include/insertar.h"
+#include "../include/bufferManager.h"
+#include "gestorBloques.h"
 #include <string>
 #include <disco.h>
 #include <fstream>
 using namespace std;
 
-const string ARCHIVO_CSVT = "archivos_csv/TitanicG.csv";
-const string ARCHIVO_CSVH = "archivos_csv/Housing.csv";
-const string ARCHIVO_DATOS_T = "archivos_esquema/datos_titanic.txt";
-const string ARCHIVO_DATOS_H = "archivos_esquema/datos_housing.txt";
-const string ARCHIVO_LONG_MAX = "archivos_esquema/longitudes_maximas.txt";
-const string ARCHIVO_ESQUEMAT = "archivos_esquema/esquema_titanic.txt";
-const string ARCHIVO_ESQUEMAH = "archivos_esquema/esquema_hosing.txt";
-const string RUTAS = "rutas_sectores/rutas.txt";
-const string RUTASB = "rutas_sectores/cilindroMedio.txt";
-const string ARCHIVO_INFO_DISCO = "archivo_info_Disco/info_disco.txt";
-const string ARCHIVO_B_X_SECTORES = "archivo_info_Disco/info_bloque.txt";
+const string ARCHIVO_CSVT = "../../archivos_csv/TitanicG.csv";
+const string ARCHIVO_CSVH = "../../archivos_csv/Housing.csv";
+const string ARCHIVO_DATOS_T = "../../archivos_esquema/datos_titanic.txt";
+const string ARCHIVO_DATOS_H = "../../archivos_esquema/datos_housing.txt";
+const string ARCHIVO_LONG_MAX = "../../archivos_esquema/longitudes_maximas.txt";
+const string ARCHIVO_ESQUEMAT = "../../archivos_esquema/esquema_titanic.txt";
+const string ARCHIVO_ESQUEMAH = "../../archivos_esquema/esquema_hosing.txt";
+const string RUTAS = "../../rutas_sectores/rutas.txt";
+const string RUTASB = "../../rutas_sectores/cilindroMedio.txt";
+const string ARCHIVO_INFO_DISCO = "../../archivo_info_Disco/info_disco.txt";
+const string ARCHIVO_B_X_SECTORES = "../../archivo_info_Disco/info_bloque.txt";
 
 void mostrarMenu() {
     cout << "\n----- MEGATROM 3000 -----\n";
@@ -223,10 +225,12 @@ void cargarPagina(){
     char modoApertura = ' ';
     string rutaBloque;
     bloque b;
+    bufferManager BM;
     rutaBloque = obtenerRutaPorId(RUTASB,  _idBloque);
     cout << rutaBloque << endl;
     b.inicializarBloque(_idBloque, rutaBloque);
-    b.mostrarBloque();
+    //BM.agregarGestorBloques(_idBloque,b);
+
 }   
 /*
 cout << "idBloque: ";

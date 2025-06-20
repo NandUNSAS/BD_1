@@ -9,6 +9,7 @@ class bufferManager{
     gestorBloques gb;
     public:
         void agregarGestorBloques(int id , bloque b);
+       // void mostrar
         void agregarBufferPool();
 };
 //
